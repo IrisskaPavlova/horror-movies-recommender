@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <div class="header-content">
+        <h1>FILMERS</h1> <!-- Заголовок на одной строке с формами -->
+        <div class="actions">
+            <form action="/rate" method="POST" class="form-rate">
+                <input type="text" name="movie_id" placeholder="ID фильма" required>
+                <input type="number" name="rating" min="1" max="5" placeholder="Оценка (1-5)" required>
+                <button type="submit">Оценить</button>
+            </form>
+
+            <form action="/search" method="POST" class="form-search">
+                <input type="text" name="search_query" placeholder="Поиск фильма" required>
+                <button type="submit">Искать</button>
+            </form>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul>
+                    {% for category, message in messages %}
+                        <li class="flash-message {{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <div class="actions">
+        <form action="/recommend" method="POST" class="form-recommend">
+            <button type="submit">Получить рекомендации</button>
+        </form>
+
+        <form action="/random_movie" method="GET" class="form-random">
+            <button type="submit">Случайный фильм</button>
+        </form>
+    </div>
+
+    <section class="search-results">
+        
+        <div class="movie-list"> <!-- Изменено на div для Flexbox -->
+            {% if found_movies is not none %}
+                {% for movie in found_movies.itertuples() %}
+                    <div class="movie-item">
+                        <img src="{{ movie.poster }}" alt="{{ movie.title }}" class="movie-poster">
+                        <div class="movie-info">
+                            <strong><a href="{{ url_for('movie_details', movie_id=movie.movieId) }}">{{ movie.title }}</a></strong> 
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div> </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="recommendations">
+        <h2>Рекомендации:</h2>
+        <div class="recommendation-list"> <!-- Изменено на div для Flexbox -->
+            {% if recommendations is not none %}
+                {% for rec in recommendations %}
+                    <div class="movie-item">
+                        <img src="{{ rec.poster }}" alt="{{ rec.title }}" class="movie-poster">
+                        <div class="movie-info">
+                            <strong><a href="{{ url_for('movie_details', movie_id=rec.movieId) }}">{{ rec.title }}</a></strong> 
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div>Рекомендации еще не получены.</div>
+            {% endif %}
+        </div>
+    </section>
+</div>
+</body>
+</html>

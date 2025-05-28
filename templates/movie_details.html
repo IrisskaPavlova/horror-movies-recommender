@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ movie.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header class="header">
+    <h1>{{ movie.title }}</h1>
+    <h1> id: {{ movie.id}}</h1>
+</header>
+<div class="container">
+    <div class="movie-details">
+        <img src="{{ movie.poster_path }}" alt="{{ movie.title }}" class="movie-poster">
+        <div class="movie-info" >
+            <h2>Описание</h2>
+            <p>{{ movie.overview }}</p>
+            <h3>Год производства: {{ movie.year }}</h3>
+            <h3>Страна: {{ movie.countries }}</h3>
+            <h3>Жанр: {{ movie.genres }}</h3>
+            <h3>Слоган: {{ movie.slogan }}</h3>
+            <h3>Режиссер: {{ movie.director }}</h3>
+            <h3>Продюсер: {{ movie.producer }}</h3>
+            <h3>Оператор: {{ movie.operator }}</h3>
+            <h3>Композитор: {{ movie.composer }}</h3>
+            <h3>Бюджет: {{ movie.budget }}</h3>
+            <h3>Дата премьеры в России: {{ movie.premiere_date }}</h3>
+            <h3>Возраст: {{ movie.age_rating }}+</h3>
+            <h3>Рейтинг: {{ movie.rating }}</h3>
+            <h3>Время: {{ movie.movie_length }} минут</h3>
+            <a href="{{ url_for('home') }}">Назад к поиску</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

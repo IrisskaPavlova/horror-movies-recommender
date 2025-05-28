@@ -1,0 +1,166 @@
+/* Общие стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #000; /* Черный фон */
+    color: #fff; /* Белый текст */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Стили для шапки */
+.header {
+    background: #222;
+    color: #fff;
+    padding: 10px 20px; /* Уменьшены отступы */
+    display: flex;
+    flex-direction: column; /* Изменено на колонку для размещения заголовка и форм */
+    position: fixed; /* Фиксированное положение */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Убедитесь, что шапка выше других элементов */
+}
+
+.header-content {
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+    justify-content: space-between; /* Распределение пространства между заголовком и формами */
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 20px; /* Уменьшен размер шрифта */
+    font-weight: bold;
+}
+
+/* Основной контейнер */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 30px 30px; /* Добавлено отступ сверху для фиксированной шапки */
+}
+
+/* Формы и кнопки */
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Уменьшено расстояние между формами */
+    margin-bottom: 10px; /* Отступ между формами и заголовком */
+}
+
+.form-rate,
+.form-search,
+.form-recommend {
+    display: flex;
+    gap: 5px; /* Уменьшено расстояние между полями и кнопками */
+    flex: 1 0 45%; /* Уменьшены размеры форм */
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 8px; /* Уменьшено внутреннее поле */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button {
+    padding: 8px 15px; /* Уменьшены размеры кнопок */
+    border: none;
+    background: #3498db; /* Голубой цвет кнопок */
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #2980b9; /* Темнее при наведении */
+}
+
+/* Результаты поиска и рекомендации */
+.search-results,
+.recommendations {
+    margin-bottom: 30px;
+}
+
+.movie-list {
+    display: flex; /* Используем Flexbox для отображения в строку */
+    flex-wrap: wrap; /* Позволяем перенос элементов на новую строку */
+    gap: 20px; /* Расстояние между элементами */
+}
+
+.recommendation-list {
+    display: flex; /* Используем Flexbox для отображения в строку */
+    flex-wrap: wrap; /* Позволяем перенос элементов на новую строку */
+    gap: 20px; /* Расстояние между элементами */
+}
+
+.movie-item {
+    background: #222; /* Темный фон для элементов */
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 30%; /* Устанавливаем ширину элемента для трех в строке */
+    max-width: 30%; /* Ограничиваем максимальную ширину */
+}
+
+.movie-poster {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.movie-info {
+    margin-left: 20px;
+    text-align: left;
+}
+
+.movie-info strong {
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.movie-info p {
+    font-size:  14px;
+    color: #777;
+    line-height: 1.6;
+}
+
+.movie-details {
+    display: flex; /* Используем Flexbox для размещения изображения и информации рядом */
+    margin-top: 20px; /* Отступ сверху */
+    
+}
+/* Адаптивность */
+@media (max-width: 768px) {
+    .actions {
+        flex-direction: column;
+    }
+
+    .form-rate,
+    .form-search {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .recommendation-list {
+        flex-direction: column; /* В колонку на маленьких экранах */
+    }
+
+    .movie-item {
+        max-width: 100%; /* Полная ширина на маленьких экранах */
+    }
+}
