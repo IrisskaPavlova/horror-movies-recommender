@@ -44,7 +44,6 @@ collaborative filtering implementation of a recommendation system in python
 ### Запуск приложения
 Для запуска приложения выполните следующую команду:    
 
-    ```bash
     python app.py
    
 Приложение будет доступно по адресу http://127.0.0.1:5000/.    
@@ -56,7 +55,7 @@ collaborative filtering implementation of a recommendation system in python
 Для добавления оценки ведите id фильма и оценку в поля на главной странице. Id фильма можно посмотреть на странице фильма сверху.
 
 ### Структура проекта
-      ```bash
+      
       movie-recommendation-system/
       │
       ├── app.py                # Основной файл приложения
